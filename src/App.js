@@ -11,16 +11,22 @@ const getRandomCoordinates = () => {
   return [x, y]
 }
 
+const initialState =  {
+  direction: "RIGHT",
+  food: getRandomCoordinates(),
+  speed: 200,
+  snakeDots: [
+    [0, 0],
+    [2, 0]
+  ]
+}
+
+
+
 class App extends Component {
-  state = {
-    direction: "RIGHT",
-    food: getRandomCoordinates(),
-    speed: 200,
-    snakeDots: [
-      [0, 0],
-      [2, 0]
-    ]
-  }
+
+  state =   initialState
+  
   componentDidMount() { // This one is called immediately after a component has been mounted 
     setInterval(this.moveSnake, this.state.speed)
     document.onkeydown = this.onKeyDown
@@ -78,6 +84,7 @@ class App extends Component {
 
    gameOver = () => {
      alert("Game Over, Length is : " + this.state.snakeDots.length)
+     this.setState(initialState)
    }
 
   render() {
