@@ -11,7 +11,7 @@ const getRandomCoordinates = () => {
   return [x, y]
 }
 
-const initialState =  {
+const initialState = {
   direction: "RIGHT",
   food: getRandomCoordinates(),
   speed: 200,
@@ -25,8 +25,8 @@ const initialState =  {
 
 class App extends Component {
 
-  state =   initialState
-  
+  state = initialState
+
   componentDidMount() { // This one is called immediately after a component has been mounted 
     setInterval(this.moveSnake, this.state.speed)
     document.onkeydown = this.onKeyDown
@@ -49,7 +49,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate =() => { // This always keeps on checking the the game window has updated
+  componentDidUpdate = () => { // This always keeps on checking the the game window has updated
     this.checkOutOfBounds()
   }
 
@@ -75,17 +75,17 @@ class App extends Component {
     this.setState({ snakeDots: dots })
   }
 
-   checkOutOfBounds =() => {
-     let head = this.state.snakeDots[this.state.snakeDots.length -1]
-      if(head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0){
-        this.gameOver()
-      }
-   }
+  checkOutOfBounds = () => {
+    let head = this.state.snakeDots[this.state.snakeDots.length - 1]
+    if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
+      this.gameOver()
+    }
+  }
 
-   gameOver = () => {
-     alert("Game Over, Length is : " + this.state.snakeDots.length)
-     this.setState(initialState)
-   }
+  gameOver = () => {
+    alert("Game Over, Length is : " + this.state.snakeDots.length)
+    this.setState(initialState)
+  }
 
   render() {
     return (
